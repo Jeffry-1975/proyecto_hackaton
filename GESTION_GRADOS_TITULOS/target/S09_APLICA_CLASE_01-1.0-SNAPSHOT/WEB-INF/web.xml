@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+   version="6.0">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <context-param>
+        <param-name>ruta-tesis-uploads</param-name>
+        <param-value>C:/tesis</param-value> 
+        <!-- ¡Asegúrate de crear esta carpeta C:/tesis manualmente! -->
+    </context-param>
+    <!-- 1. Definimos nuestro filtro -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <!-- La ruta completa de tu clase de Filtro -->
+        <filter-class>Controladores.AuthenticationFilter</filter-class>
+    </filter>
+    
+    <!-- 2. Le decimos al filtro qué URLs debe "vigilar" -->
+    <!-- Vigilará CUALQUIER .jsp, excepto el login (que lo excluimos en el código) -->
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    
+    <!-- Mapeo para proteger el nuevo AdminServlet -->
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/AdminServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/StudentServlet</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/TeacherServlet</url-pattern>
+    </filter-mapping>
+    
+    <!-- Mapeo para proteger el nuevo UsuarioAdminServlet -->
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/UsuarioAdminServlet</url-pattern>
+    </filter-mapping>
+    
+    <!-- Mapeo para proteger el TesisAdminServlet -->
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/TesisAdminServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>//EvaluarServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/ReporteServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/SubirCorreccionServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/ReporteEvaluacionServlet</url-pattern>
+    </filter-mapping>
+    
+    <!-- 5. Definición Manual del TesisAdminServlet (Arregla el 404 del Servlet) -->
+    <servlet>
+        <servlet-name>TesisAdminServlet</servlet-name>
+        <servlet-class>Controladores.TesisAdminServlet</servlet-class>
+        
+        <!-- Configuración para subida de archivos (multipart) -->
+        <multipart-config>
+            <max-file-size>10485760</max-file-size> <!-- 10MB -->
+            <max-request-size>15728640</max-request-size> <!-- 15MB -->
+            <file-size-threshold>1048576</file-size-threshold> <!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>TesisAdminServlet</servlet-name>
+        <url-pattern>/TesisAdminServlet</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>Controladores.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/DownloadServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--  NUEVO: 7. Definición Manual del SubirCorreccionServlet  -->
+    <servlet>
+        <servlet-name>SubirCorreccionServlet</servlet-name>
+        <servlet-class>Controladores.SubirCorreccionServlet</servlet-class>
+        
+        <!-- Configuración para subida de archivos (multipart) -->
+        <multipart-config>
+            <max-file-size>10485760</max-file-size> <!-- 10MB -->
+            <max-request-size>15728640</max-request-size> <!-- 15MB -->
+            <file-size-threshold>1048576</file-size-threshold> <!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SubirCorreccionServlet</servlet-name>
+        <url-pattern>/SubirCorreccionServlet</url-pattern>
+    </servlet-mapping>
+</web-app>
