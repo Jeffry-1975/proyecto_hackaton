@@ -44,18 +44,18 @@ El proyecto se construyó priorizando la escalabilidad y el rendimiento:
 ## 5. Capturas de Pantalla
 ### A. Panel del Estudiante
 Visualización clara del estado de aprobación y acceso a rúbricas.
-![Panel del Estudiante](img/Muestra1.jpeg)
+![Panel del Estudiante](recursos/Muestra1.jpeg)
 
 ### B. Panel del Docente
 Gestión de carga laboral con indicadores visuales (Semáforo de tareas).
-![Panel del Docente](img/Muestra2.jpeg)
+![Panel del Docente](recursos/Muestra2.jpeg)
 
 ### C. Panel Administrativo
 Control total de usuarios y asignación de revisores.
-![Panel Administrativo](img/Muestra3.jpeg)
+![Panel Administrativo](recursos/Muestra3.jpeg)
 
 ### D. Vista General del Sistema
-![Vista General](img/Muestra4.jpeg)
+![Vista General](recursos/Muestra4.jpeg)
 
 ## 6. Cómo Ejecutar el Prototipo
 ### Requisitos Previos
